@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>AMAZON BOOKSTORE - BOOKS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="../pages/books">Books</a>
+    <a class="navbar-brand" href="../pages/authors">Authors</a>
+    <a class="navbar-brand" href="http://localhost:3000/pages/stores">Stores</a>
+  </nav>
+  <body>
+    <h1>Books</h1>
+    <%@books.each do | book |%>
+
+      <%=image_tag(book.img_url)%>
+      <%=book.title%>
+      <%=book.author.name%>
+      <br>
+      <%= form_tag(charges_path) do %>
+        <article>
+          <% if flash[:error].present? %>
+            <div id="error_explanation">
+              <p><%= flash[:error] %></p>
+            </div>
+          <% end %>
+          <label class="amount">
+            <span><% @book.price %></span>
+          </label>
+        </article>
+
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-description="A month's subscription"
+                data-amount= "<% @book.price %>"
+                data-locale="auto"></script>
+      <% end %>
+      <%end%>
+
+  </body>
+</html>

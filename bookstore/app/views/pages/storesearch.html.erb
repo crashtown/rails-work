@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>AMAZON BOOKSTORE - STORES </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="http://localhost:3000/pages/books">Books</a>
+    <a class="navbar-brand" href="http://localhost:3000/pages/authors">Authors</a>
+    <a class="navbar-brand" href="http://localhost:3000/pages/stores">Stores</a>
+  </nav>
+  <body>
+    <%@stores_user_address.each do | store | %>
+      <%=store.title%> is closest to you at <%=store.city%>.
+      <%= link_to('Click here for more info!', action: 'stores_view', params: {id: store.id}) %>
+      <%break%>
+    <%end%>
+  </body>
+</html>

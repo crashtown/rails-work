@@ -1,0 +1,7 @@
+<h1>Hotels</h1>
+<% @hotels.each do | hotel | %>
+<%= hotel.name %>
+<% hotel.rooms.each do | room | %>
+<%= room.name %>
+ <% end %>
+ <% end %>
